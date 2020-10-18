@@ -1,0 +1,9 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+               _  _          __    __               _      _
+  /${symbol_escape}  /${symbol_escape}  ___ | || |  ___   / / /${symbol_escape} ${symbol_escape} ${symbol_escape}  ___   _ __ | |  __| |
+ / /_/ / / _ ${symbol_escape}| || | / _ ${symbol_escape}  ${symbol_escape} ${symbol_escape}/  ${symbol_escape}/ / / _ ${symbol_escape} | '__|| | / _` |
+/ __  / |  __/| || || (_) |  ${symbol_escape}  /${symbol_escape}  / | (_) || |   | || (_| |
+${symbol_escape}/ /_/   ${symbol_escape}___||_||_| ${symbol_escape}___/    ${symbol_escape}/  ${symbol_escape}/   ${symbol_escape}___/ |_|   |_| ${symbol_escape}__,_|
+Using Spring Boot ${symbol_dollar}{spring-boot.version}

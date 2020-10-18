@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${artifactId}
+  labels:
+    app: ${artifactId}
+spec:
+  # Scaling
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${artifactId}
+  template:
+    metadata:
+      labels:
+        app: ${artifactId}
+    spec:
+      containers:
+      - name: ${artifactId}
+        image: ${artifactId}
+        # Check run that if you have hope that restarting will help!
+        # The Readiness state tells whether the application is ready to accept client requests.
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /actuator/health/readiness
+          initialDelaySeconds: 20
+          periodSeconds: 30
+        # The Liveness state of an application tells whether the internal state is valid (e.g.,
+        # it is connected to a required DB, cache, ...).
+        livenessProbe:
+          httpGet:
+            path: /actuator/health/liveness
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        # Resources
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "384Mi"
+            cpu: "2000m"
+        # System environment
+        env:
+          - name: INSTANCE_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: SERVER_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: ${artifactId}-cm
+                key: SERVER_PORT
+          - name: SPRING_PROFILES_ACTIVE
+            valueFrom:
+              configMapKeyRef:
+                name: ${artifactId}-cm
+                key: SPRING_PROFILES_ACTIVE

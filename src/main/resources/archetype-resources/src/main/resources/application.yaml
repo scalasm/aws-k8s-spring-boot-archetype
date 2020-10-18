@@ -1,0 +1,23 @@
+##
+## Spring Configuration
+## Note that configuration options will be overridden by ENV variables set through Kubernetes config maps.
+## As alternative, consider using Spring Cloud Kubernetes CM property sources (https://spring.io/projects/spring-cloud-kubernetes)
+##
+spring:
+  application:
+    name: ${artifactId}
+
+#  main:
+#    lazy-initialization: true
+##
+## Spring Configuration
+##
+management:
+  # Display Git info
+  info:
+    git:
+      mode: full
+  # Enable health endpoints (for readiness/liveness checks)
+  endpoint:
+    health:
+      enabled: true
