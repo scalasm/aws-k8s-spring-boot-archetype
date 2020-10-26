@@ -5,19 +5,20 @@ This project is an archetype for scaffolding new microservice projects based on 
 It leverages several tools that I find useful in my usual workflow:
 * [Skaffold](https://skaffold.dev/) (0.15.0 or better) + Kustomize (included in Kubectl 1.14.x or newer)
 * Maven 3.6.x + [Jib](https://github.com/GoogleContainerTools/jib) 2.6.x
+* A Kubernetes environment, either running locally on your machine like [Docker for Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows) or [Minikube](https://github.com/kubernetes/minikube) or remotely on some actual server machines (like AWS EKS).
 
-With this you will get a RESTful endpoint with Spring Boot Web and readiness/liveness check configured, nothing more but
+With this you will get a very basic RESTful endpoint with Spring Boot Web and Kubernetes readiness/liveness checks configured: nothing more but
 at least you can start tweaking things :)
 
-I find it useful when starting my services from scratch, maybe somebody else may find it useful too!
+I find it useful when starting my services from scratch without copying and pasting things around across projects.
 
-Note that this archetype have been creating from [Hello World project repository](https://github.com/scalasm/aws-k8s-hello-world): 
+Note that this archetype has been created from [Hello World project repository](https://github.com/scalasm/aws-k8s-hello-world): 
 you may want to take a look at it for more info about the stack and tools that I've used.
 
 # How to use
 
-1. Close this repository locally and launch the usual `mvn clean install`.
-2. Change directory to a place where you want to create your microservice and run something like ():
+1. Clone this repository locally and launch the usual `mvn clean install`, so that you may use it on your machine;
+2. In a terminal (or your IDE) run something like the following (of course, adapt the command line ;)):
 ```shell script
 mvn archetype:generate -DarchetypeGroupId=me.marioscalas.archetypes \
     -DarchetypeArtifactId=aws-k8s-spring-boot-archetype \
@@ -33,7 +34,7 @@ Ensure you have your cluster available and run skaffold
 skaffold run
 ```
 
-Note: you can define custom profiles with Skaffold and define the Docker image repository to use. 
+Note: you can define custom profiles with Skaffold and define the Docker image repository to use, see Skaffold documentation for that. 
 
 For example, on my laptop and using Docker for Desktop:
 ```
